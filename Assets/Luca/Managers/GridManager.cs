@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class GridManager : Singleton<GridManager>
 {
+    public GameObject[,] TileList{ get; private set; }
+    public int TilePerRow { get => _tilePerRow; }
+    public float TileHeight { get => _tileHeight; }
+
     [Header("Grid References")]
     [SerializeField]
     private GameObject _gridObj = null;
@@ -13,29 +14,54 @@ public class GridManager : Singleton<GridManager>
     [SerializeField]
     private Material _gridMaterial = null;
 
+    [Header("Grid Settings")]
+    [SerializeField]
+    private int _tilePerRow = 3;
+    [SerializeField]
+    private float _tileHeight = 0.5f;
+
     private float _tileGap = 0;
     private int _tileCount = 0;
     private int _gridSize = 0;
 
-    // TO DO Change it to a list of "Tile"
-    private List<GameObject> _tileList = new List<GameObject>();
+    public GridTile GetTileAt(Vector2Int index)
+    {
+        if (!ExistTileAt(index))
+            return null;
+
+        return TileList[index.x, index.y].GetComponent<GridTile>();
+    }
+
+    public bool ExistTileAt(Vector2Int index)
+    {
+        if (index.x < 0 || index.y < 0 || index.x >= _tilePerRow || index.y >= _tilePerRow)
+            return false;
+
+        return true;
+    }
 
     protected override void Awake()
     {
         base.Awake();
+        _gridMaterial.SetInt("_GridSize", _tilePerRow);
         InitGrid();
     }
 
     private void InitGrid()
     {
-        _tileCount = (int)Mathf.Pow(_gridMaterial.GetInt("_GridSize"), 2);
+        int rowCount = -1;
+        int colCount = 0;
+
         _gridSize = _gridMaterial.GetInt("_GridSize");
-        _tileGap = _gridObj.transform.localScale.x / _gridMaterial.GetInt("_GridSize");
+        _tileCount = (int)Mathf.Pow(_gridSize, 2);
+        _tileGap = _gridObj.transform.localScale.x / _gridSize;
+
+        TileList = new GameObject[_gridSize, _gridSize];
 
         bool isRowOdd = _tileCount % 2 != 0;
 
         // Calc the initialPos of the first tile
-        float firstPos = -(_tileGap * Mathf.FloorToInt(_gridMaterial.GetInt("_GridSize") / 2));
+        float firstPos = -(_tileGap * Mathf.FloorToInt(_gridSize / 2));
         Vector2 initialPos = new Vector2(firstPos, firstPos);
         GameObject _lastRow = null;
 
@@ -43,24 +69,35 @@ public class GridManager : Singleton<GridManager>
         {
             if (i % _gridSize == 0)
             {
+                rowCount++;
                 #region Hierarchy organization (Can be deleted)
-                _lastRow = new GameObject("Row");
+                _lastRow = new GameObject("Row_" + rowCount);
                 _lastRow.transform.parent = _gridObj.transform;
                 #endregion
-
+                colCount = 0;
                 initialPos.x = firstPos;
                 if (i > 0)
                     initialPos.y += _tileGap;
             }
 
-            _tileList.Add(Instantiate(_gridTilePrefab, _lastRow.transform));
+            //_tileList.Add(Instantiate(_gridTilePrefab, _lastRow.transform));
+            TileList[colCount, rowCount] = Instantiate(_gridTilePrefab, _lastRow.transform);
+            
 
             // Check if the number of tiles is Odd and then change the position to the center of the GridTile shader
             if (isRowOdd)
-                _tileList[i].transform.position = new Vector3(initialPos.x, 0.5f, initialPos.y);
+            {
+                TileList[colCount, rowCount].transform.position = new Vector3(initialPos.x, _tileHeight, initialPos.y);
+                TileList[colCount, rowCount].GetComponent<GridTile>().SetTilePos(initialPos.x, _tileHeight, initialPos.y);
+            }
             else
-                _tileList[i].transform.position = new Vector3(initialPos.x + _tileGap / 2, 0.5f, initialPos.y + _tileGap / 2);
+            {
+                TileList[colCount, rowCount].transform.position = new Vector3(initialPos.x + _tileGap / 2, _tileHeight, initialPos.y + _tileGap / 2);
+                TileList[colCount, rowCount].GetComponent<GridTile>().SetTilePos(initialPos.x + _tileGap / 2, _tileHeight, initialPos.y + _tileGap / 2);
+            }
 
+            colCount++;
+            
             initialPos.x += _tileGap;
         }
     }
