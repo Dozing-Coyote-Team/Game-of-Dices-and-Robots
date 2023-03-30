@@ -22,7 +22,8 @@ public class EquipmentStat : ScriptableObject
         FullHouse,
         LowStraight,
         HighStraight,
-        Kind5
+        Kind5,
+        CustomCombo
     }
     
     public EquipmentType EquipType { get => _equipType; }
@@ -49,6 +50,9 @@ public class EquipmentStat : ScriptableObject
     [Min(0)]
     [SerializeField]
     private int _speed;
+    [HideInInspector]
+    [SerializeField]
+    private List<int> _customComboSet = new List<int>(5);
 
     public bool IsComboValid(List<int> diceResults)
     {
@@ -93,6 +97,17 @@ public class EquipmentStat : ScriptableObject
                                 .Select((n, i) => new { Number = n, Index = i })
                                 .GroupBy(x => x.Number - x.Index)
                                 .Any(g => g.Count() == 4);
+        }
+
+        // Custom Combo
+        if(_comboType == ComboType.CustomCombo)
+        {
+            for(int i=0; i < diceResults.Count; i++)
+            {
+                if ((_customComboSet[i] != 0) && (_customComboSet[i] != diceResults[i]))
+                    return false;
+            }
+            return true;
         }
 
         return false;

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: SpikeHeadStat
   m_EditorClassIdentifier: 
   _equipType: 0
-  _comboType: 4
+  _comboType: 6
   _damage: 0
   _defence: 0
   _accuracy: 0
   _speed: 0
+  _customComboSet: 0000000000000000000000000000000000000000
