@@ -54,12 +54,12 @@ public class EquipmentStat : ScriptableObject
     [SerializeField]
     private List<int> _customComboSet = new List<int>(5);
 
-    public bool IsComboValid(List<int> diceResults)
+    public bool IsComboValid(List<int> dicesResults)
     {
         // Combo Kind
         if((_comboType == ComboType.Kind3 || _comboType == ComboType.Kind4 || _comboType == ComboType.Kind5))
         {
-            int countEqualNumbers = diceResults.GroupBy(n => n)
+            int countEqualNumbers = dicesResults.GroupBy(n => n)
                       .Select(g => g.Count())
                       .DefaultIfEmpty(0)
                       .Max();
@@ -74,7 +74,7 @@ public class EquipmentStat : ScriptableObject
         // Full House
         if(_comboType == ComboType.FullHouse)
         {
-           return diceResults.GroupBy(n => n)
+           return dicesResults.GroupBy(n => n)
                              .Where(g => g.Count() == 2 || g.Count() == 3)
                              .GroupBy(g => g.Count())
                              .Select(g => g.Key)
@@ -84,7 +84,7 @@ public class EquipmentStat : ScriptableObject
         // High Straight
         if (_comboType == ComboType.HighStraight)
         {
-            return diceResults.OrderBy(n => n)
+            return dicesResults.OrderBy(n => n)
                                     .Select((n, i) => new { Number = n, Index = i })
                                     .GroupBy(x => x.Number - x.Index)
                                     .Any(g => g.Count() == 5);
@@ -93,7 +93,7 @@ public class EquipmentStat : ScriptableObject
         // Low Straight
         if (_comboType == ComboType.LowStraight)
         {
-            return diceResults.OrderBy(n => n)
+            return dicesResults.OrderBy(n => n)
                                 .Select((n, i) => new { Number = n, Index = i })
                                 .GroupBy(x => x.Number - x.Index)
                                 .Any(g => g.Count() == 4);
@@ -102,9 +102,9 @@ public class EquipmentStat : ScriptableObject
         // Custom Combo
         if(_comboType == ComboType.CustomCombo)
         {
-            for(int i=0; i < diceResults.Count; i++)
+            for(int i=0; i < dicesResults.Count; i++)
             {
-                if ((_customComboSet[i] != 0) && (_customComboSet[i] != diceResults[i]))
+                if ((_customComboSet[i] != 0) && (_customComboSet[i] != dicesResults[i]))
                     return false;
             }
             return true;
