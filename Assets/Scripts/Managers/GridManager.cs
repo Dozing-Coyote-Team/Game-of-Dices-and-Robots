@@ -18,6 +18,7 @@ public class GridManager : Singleton<GridManager>
     private Material _gridMaterial = null;
 
     [Header("Grid Settings")]
+    [Min(3)]
     [SerializeField]
     private int _tilePerRow = 3;
     [SerializeField]
