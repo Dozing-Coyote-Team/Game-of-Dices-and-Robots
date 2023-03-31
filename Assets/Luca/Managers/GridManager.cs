@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class GridManager : Singleton<GridManager>
 {
+    public static event Action OnGridReady;
+
     public GameObject[,] TileList{ get; private set; }
     public int TilePerRow { get => _tilePerRow; }
     public float TileHeight { get => _tileHeight; }
@@ -112,6 +115,8 @@ public class GridManager : Singleton<GridManager>
             
             initialPos.x += _tileGap;
         }
+
+        OnGridReady?.Invoke();
     }
 
     private void OnValidate()
