@@ -40,11 +40,23 @@ public class GridManager : Singleton<GridManager>
         return true;
     }
 
+    public void AssignEmptyTiles()
+    {
+        for (int x = 0; x < TileList.GetLength(0); x++)
+        {
+            for (int y = 0; y < TileList.GetLength(1); y++)
+            {
+                TileList[x, y].GetComponent<GridTile>().AutoSetEmpty();
+            }
+        }
+    }
+
     protected override void Awake()
     {
         base.Awake();
         _gridMaterial.SetInt("_GridSize", _tilePerRow);
         InitGrid();
+        AssignEmptyTiles();
     }
 
     private void InitGrid()
@@ -100,5 +112,10 @@ public class GridManager : Singleton<GridManager>
             
             initialPos.x += _tileGap;
         }
+    }
+
+    private void OnValidate()
+    {
+        _gridMaterial.SetInt("_GridSize", _tilePerRow);
     }
 }

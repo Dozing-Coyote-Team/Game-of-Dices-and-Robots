@@ -7,21 +7,21 @@ public class PlayerMovement : ActorMovement
         if (!p_canMove)
             return;
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            MoveLeft();
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            MoveRight();
-        }
-        else if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             MoveUp();
+        }
+        else if (Input.GetKeyDown(KeyCode.A))
+        {
+            MoveLeft();
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
             MoveDown();
+        }
+        else if (Input.GetKeyDown(KeyCode.D)) 
+        {
+            MoveRight();
         }
     }
 }

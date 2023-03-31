@@ -17,4 +17,13 @@ public class GridTile : MonoBehaviour
         IsEmpty = isEmpty;
     }
 
+    public void AutoSetEmpty()
+    {
+        Vector3 fwd = transform.TransformDirection(Vector3.up);
+
+        if (Physics.Raycast(transform.position, fwd, 10))
+            IsEmpty = false;
+        else
+            IsEmpty = true;
+    }
 }

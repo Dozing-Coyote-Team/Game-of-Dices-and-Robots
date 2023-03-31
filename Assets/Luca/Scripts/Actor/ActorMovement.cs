@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -14,49 +15,72 @@ public class ActorMovement : MonoBehaviour
     private Vector2Int _startingIndex = Vector2Int.zero;
 
     private Vector2Int _currentIndex = Vector2Int.zero;
-    private Vector3 _lastRotation = Vector3.forward;
 
     protected virtual void Start()
     {
         _currentIndex = _startingIndex;
         transform.position = GridManager.Instance.GetTileAt(_currentIndex).TilePosition;
+        GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(false);
     }
 
     protected virtual void MoveLeft()
     {
+        GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(true);
         _currentIndex.x--;
-        if (GridManager.Instance.ExistTileAt(_currentIndex) && GridManager.Instance.GetTileAt(_currentIndex).IsEmpty)
-            StartCoroutine(Move(GridManager.Instance.GetTileAt(_currentIndex).TilePosition, -Vector3.right));
-        else
+
+        if(!TryMove(_currentIndex, Vector3.left))
+        {
             _currentIndex.x++;
-        
+            GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(false);
+        }
     }
 
     protected virtual void MoveRight()
     {
+        GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(true);
         _currentIndex.x++;
-        if (GridManager.Instance.ExistTileAt(_currentIndex) && GridManager.Instance.GetTileAt(_currentIndex).IsEmpty)
-            StartCoroutine(Move(GridManager.Instance.GetTileAt(_currentIndex).TilePosition, Vector3.right));
-        else
+
+        if (!TryMove(_currentIndex, Vector3.right))
+        {
             _currentIndex.x--;
+            GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(false);
+        }
     }
 
     protected virtual void MoveUp()
     {
+        GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(true);
         _currentIndex.y++;
-        if (GridManager.Instance.ExistTileAt(_currentIndex) && GridManager.Instance.GetTileAt(_currentIndex).IsEmpty)
-            StartCoroutine(Move(GridManager.Instance.GetTileAt(_currentIndex).TilePosition, Vector3.forward));
-        else
+
+        if (!TryMove(_currentIndex, Vector3.forward))
+        {
             _currentIndex.y--;
+            GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(false);
+        }
     }
 
     protected virtual void MoveDown()
     {
+        GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(true);
         _currentIndex.y--;
-        if (GridManager.Instance.ExistTileAt(_currentIndex) && GridManager.Instance.GetTileAt(_currentIndex).IsEmpty)
-            StartCoroutine(Move(GridManager.Instance.GetTileAt(_currentIndex).TilePosition, -Vector3.forward));
-        else
+
+        if (!TryMove(_currentIndex, -Vector3.forward))
+        {
             _currentIndex.y++;
+            GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(false);
+        }
+    }
+
+    private bool TryMove(Vector2Int index, Vector3 direction)
+    {
+        if (GridManager.Instance.ExistTileAt(index) && GridManager.Instance.GetTileAt(index).IsEmpty)
+        {
+            StartCoroutine(Move(GridManager.Instance.GetTileAt(index).TilePosition, direction));
+            GridManager.Instance.GetTileAt(index).SetEmpty(false);
+            return true;
+        }
+
+        return false;
     }
 
     private IEnumerator Move(Vector3 position, Vector3 rotation)
