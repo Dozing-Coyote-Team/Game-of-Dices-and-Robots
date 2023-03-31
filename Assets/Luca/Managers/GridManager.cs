@@ -59,7 +59,6 @@ public class GridManager : Singleton<GridManager>
         base.Awake();
         _gridMaterial.SetInt("_GridSize", _tilePerRow);
         InitGrid();
-        AssignEmptyTiles();
     }
 
     private void InitGrid()
@@ -116,6 +115,7 @@ public class GridManager : Singleton<GridManager>
             initialPos.x += _tileGap;
         }
 
+        AssignEmptyTiles();
         OnGridReady?.Invoke();
     }
 

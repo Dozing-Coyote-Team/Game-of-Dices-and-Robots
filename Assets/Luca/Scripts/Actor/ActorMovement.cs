@@ -15,12 +15,43 @@ public class ActorMovement : MonoBehaviour
 
     private Vector2Int _currentIndex = Vector2Int.zero;
 
-    protected virtual void Start()
+    protected virtual void OnEnable()
+    {
+        GridManager.OnGridReady += InstantiateActor;
+    }
+
+    protected virtual void OnDisable()
+    {
+        GridManager.OnGridReady -= InstantiateActor;
+    }
+
+    protected virtual void InstantiateActor()
     {
         _currentIndex = _startingIndex;
-        transform.position = GridManager.Instance.GetTileAt(_currentIndex).TilePosition;
+        if (GridManager.Instance.ExistTileAt(_currentIndex) && GridManager.Instance.GetTileAt(_currentIndex).IsEmpty)
+            transform.position = GridManager.Instance.GetTileAt(_currentIndex).TilePosition;
+        else
+        {
+            _currentIndex = GetFirstEmpty(Vector2Int.zero);
+            transform.position = GridManager.Instance.GetTileAt(_currentIndex).TilePosition;
+        }
+
         GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(false);
     }
+
+    protected virtual Vector2Int GetFirstEmpty(Vector2Int startIndex)
+    {  
+        for(int x = startIndex.x; x < GridManager.Instance.TileList.GetLength(0); x++)
+        {
+            for (int y = startIndex.y; y < GridManager.Instance.TileList.GetLength(1); y++)
+            {
+                if (GridManager.Instance.GetTileAt(new Vector2Int(x, y)).IsEmpty)
+                    return new Vector2Int(x, y);
+            }
+        }
+
+        return new Vector2Int(-1, -1);
+    } 
 
     protected virtual void MoveLeft()
     {
