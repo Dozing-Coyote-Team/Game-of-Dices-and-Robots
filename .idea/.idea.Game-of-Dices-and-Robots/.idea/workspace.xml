@@ -3,17 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="a8eaf13b-923e-49f6-aace-5916b29d9667" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Game-of-Dices-and-Robots/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game-of-Dices-and-Robots/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Dice/UIDice.controller" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Dice/UIDice.controller.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Dice/UIDiceRoll.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Dice/UIDiceRoll.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Dice/DicePanel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Dice/DicePanel.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Dice/RollDiceBtn.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Dice/RollDiceBtn.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/Dice/Roll.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/Dice/Roll.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/Dice/UIDieModelAnimCtrl.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/Dice/UIDieModelAnimCtrl.controller.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/DiceThrow(Nico).unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DiceThrow(Nico).unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dice/DataDie.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dice/DataDie.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dice/DiceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dice/DiceManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dice/UIDie.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dice/UIDieModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dice/UIDie.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dice/UIDieModel.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dice/UIDieModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dice/UIDieModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,22 +30,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Discover.Launch.Via.Unity": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "/Users/nicolo.bertoli/Library/Application Support/JetBrains/Rider2022.3/resharper-host/DecompilerCache",
-      "/Users/nicolo.bertoli/Library/Application Support/JetBrains/Rider2022.3/resharper-host/SourcesCache",
-      "/Users/nicolo.bertoli/.local/share/Symbols/src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/Users/nicolo.bertoli/Library/Application Support/JetBrains/Rider2022.3/resharper-host/DecompilerCache&quot;,
+      &quot;/Users/nicolo.bertoli/Library/Application Support/JetBrains/Rider2022.3/resharper-host/SourcesCache&quot;,
+      &quot;/Users/nicolo.bertoli/.local/share/Symbols/src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2021.3.12f1/Unity.app/Contents/MacOS/Unity" />
@@ -96,7 +92,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1680365855348</updated>
-      <workItem from="1680365857953" duration="1661000" />
+      <workItem from="1680365857953" duration="4754000" />
+      <workItem from="1680381788469" duration="4585000" />
     </task>
     <servers />
   </component>
