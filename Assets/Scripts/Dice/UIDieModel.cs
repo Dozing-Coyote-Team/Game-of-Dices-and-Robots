@@ -12,6 +12,7 @@ public class UIDieModel : MonoBehaviour
     [SerializeField] private float _animDuration = 3f;
     [SerializeField] private AnimationCurve _animationCurve;
 
+    private int _value = 1;
     //--------------------------- public methods
     public void RollTo(int ris)
     {
@@ -20,7 +21,11 @@ public class UIDieModel : MonoBehaviour
 
     public Action OnRollAnimEnd;
     //--------------------------- private methods
-
+    
+    // vector.up + vector.right
+    //front = 360
+    //back = front + 180
+    
     private IEnumerator Rotate(float totalRot)
     {
         float t = 0;
