@@ -7,7 +7,7 @@ public class DiceManager : Singleton<DiceManager>
 {
     //-------------------------- private vars
     [Header("References")]
-    [SerializeField] private List<UIDie> _uiDice;
+    [SerializeField] private List<UIDieModel> _uiDice;
 
     private List<DataDie> _dataDice;
     
