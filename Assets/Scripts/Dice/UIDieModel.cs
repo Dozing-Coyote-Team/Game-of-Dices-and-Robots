@@ -15,18 +15,42 @@ public class UIDieModel : MonoBehaviour
     private int _value = 1;
     //--------------------------- public methods
     public void RollTo(int ris)
-    {
-        StartCoroutine(Rotate(360 * _numRolls));
+    { 
+        StartCoroutine(Rotate(360 * _numRolls + 120,Vector3.up + Vector3.right + Vector3.back));
     }
 
     public Action OnRollAnimEnd;
     //--------------------------- private methods
     
-    // vector.up + vector.right
-    //front = 360
-    //back = front + 180
+    // USATE
+    // ================================================== front e back
+    // front => StartCoroutine(Rotate(360 * _numRolls, Vector3.up + Vector3.right));
+    // back => StartCoroutine(Rotate(360 * _numRolls + 180, Vector3.up + Vector3.right));
+    // +- non hanno effetti
     
-    private IEnumerator Rotate(float totalRot)
+    // ================================================== left e bottom 
+    // bottom => StartCoroutine(Rotate(360 * _numRolls + 120,Vector3.up + Vector3.right + Vector3.forward));
+    // bottom => StartCoroutine(Rotate(360 * _numRolls - 120,Vector3.up + Vector3.right + Vector3.forward));
+    
+    // ================================================== right e top
+    //right => StartCoroutine(Rotate(360 * _numRolls + 120,Vector3.up + Vector3.right + Vector3.back));
+    //top => StartCoroutine(Rotate(360 * _numRolls - 120,Vector3.up + Vector3.right + Vector3.back));
+    
+    
+    //NON USATE
+    // ================================================== right e bottom
+    // right => StartCoroutine(Rotate(360 * _numRolls + 120,Vector3.up + Vector3.left + Vector3.forward));
+    // bottom => StartCoroutine(Rotate(360 * _numRolls - 120,Vector3.up + Vector3.left + Vector3.forward));
+    // front => StartCoroutine(Rotate(360 * _numRolls,Vector3.up + Vector3.left + Vector3.forward));
+    // + e - switchano bottom e right
+    
+    //==================================================  left e top
+    // top => StartCoroutine(Rotate(360 * _numRolls + 120,Vector3.up + Vector3.left + Vector3.back));
+    // left => StartCoroutine(Rotate(360 * _numRolls - 120,Vector3.up + Vector3.left + Vector3.back));
+    
+    
+    
+    private IEnumerator Rotate(float totalRot,Vector3 aroundAxis)
     {
         float t = 0;
         float currentRot = 0;
@@ -47,7 +71,7 @@ public class UIDieModel : MonoBehaviour
             
             Debug.Log("frame rot: "+frameRot);
             
-            transform.RotateAround(transform.position,Vector3.up + Vector3.right,frameRot);
+            transform.RotateAround(transform.position,aroundAxis,frameRot);
 
             previousRot = currentRot;
             timeElapsed += Time.deltaTime;
