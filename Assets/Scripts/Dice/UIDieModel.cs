@@ -8,11 +8,9 @@ using UnityEngine.UI;
 public class UIDieModel : MonoBehaviour
 {
     //--------------------------- private vars
-    [SerializeField] private float _numRolls = 3;
+    [SerializeField] private int _numRolls = 3;
     [SerializeField] private float _animDuration = 3f;
-    [SerializeField] private AnimationCurve _animationCurve; 
-    
-    private Animator _animator;
+    [SerializeField] private AnimationCurve _animationCurve;
 
     //--------------------------- public methods
     public void RollTo(int ris)
@@ -22,10 +20,6 @@ public class UIDieModel : MonoBehaviour
 
     public Action OnRollAnimEnd;
     //--------------------------- private methods
-    private void Awake()
-    {
-        _animator = GetComponent<Animator>();
-    }
 
     private IEnumerator Rotate(float totalRot)
     {
