@@ -431,6 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f95746a2a691452eb3464db03b3e113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _numRolls: 3
   _animDuration: 2
   _animationCurve:
     serializedVersion: 2
@@ -769,7 +770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7288078726461778225, guid: c48fdfa69ac204a4f91b1660013b8f68, type: 3}
       propertyPath: m_Name
-      value: DicePanel
+      value: RollDiceButtons
       objectReference: {fileID: 0}
     - target: {fileID: 7288078726461778226, guid: c48fdfa69ac204a4f91b1660013b8f68, type: 3}
       propertyPath: m_Pivot.x

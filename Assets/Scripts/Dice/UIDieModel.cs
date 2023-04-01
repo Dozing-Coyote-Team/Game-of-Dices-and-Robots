@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class UIDieModel : MonoBehaviour
 {
     //--------------------------- private vars
+    [SerializeField] private float _numRolls = 3;
     [SerializeField] private float _animDuration = 3f;
     [SerializeField] private AnimationCurve _animationCurve; 
     
@@ -16,7 +17,7 @@ public class UIDieModel : MonoBehaviour
     //--------------------------- public methods
     public void RollTo(int ris)
     {
-        _animator.SetTrigger("Roll");
+        StartCoroutine(Rotate(360 * _numRolls));
     }
 
     public Action OnRollAnimEnd;
@@ -26,11 +27,6 @@ public class UIDieModel : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    private void Start()
-    {
-        StartCoroutine(Rotate(1080));
-    }
-    
     private IEnumerator Rotate(float totalRot)
     {
         float t = 0;
