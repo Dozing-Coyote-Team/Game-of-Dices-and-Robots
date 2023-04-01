@@ -457,6 +457,15 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _frontRotations:
+  - {fileID: 11400000, guid: aef630e8f044f40c590aefc68781fd9c, type: 2}
+  - {fileID: 11400000, guid: 39c2dd0e4c1b541bba44f5f3d0781512, type: 2}
+  - {fileID: 11400000, guid: a35e365577a254fed8188f28ec8695cc, type: 2}
+  _backRotation: {fileID: 11400000, guid: 484d7f5f918064c6d9b164e4579e6269, type: 2}
+  _rightRotation: {fileID: 11400000, guid: 30599379c7e3344d7a52ef0ffcc1d922, type: 2}
+  _leftRotaion: {fileID: 11400000, guid: 7103f9192ca9c43b788931deb46bfb56, type: 2}
+  _upRotation: {fileID: 11400000, guid: 93f1a0b5e667b4f04af7d4259e07dde3, type: 2}
+  _bottomRotation: {fileID: 11400000, guid: f53edc3cd23a744f9ab817b1f7dfeb8e, type: 2}
 --- !u!224 &842283222 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7288078726461778226, guid: c48fdfa69ac204a4f91b1660013b8f68, type: 3}
