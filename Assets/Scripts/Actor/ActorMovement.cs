@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,11 @@ using UnityEngine.UIElements;
 
 public class ActorMovement : MonoBehaviour
 {
+    protected event Action OnMovePerformed; 
     protected bool p_canMove { get; private set; } = true;
+    protected bool p_moved { get; private set; } = false;
 
-    [Header("Settings")]
+    [Header("Movement Settings")]
     [Min(0)]
     [SerializeField]
     private float _moveTime = 0.5f;
@@ -109,17 +112,10 @@ public class ActorMovement : MonoBehaviour
         {
             StartCoroutine(Move(GridManager.Instance.GetTileAt(index).TilePosition, direction));
             GridManager.Instance.GetTileAt(index).SetEmpty(false, this.gameObject);
-
-            //Dictionary<Vector2Int, GameObject> dic = GridManager.Instance.GetNeighboursObj(index);
-
-            //foreach(var obj in dic)
-            //{
-            //    Debug.Log(obj.Value.ToString());
-            //}
-
+            p_moved = true;
             return true;
         }
-
+        p_moved = false;
         return false;
     }
 
@@ -139,8 +135,8 @@ public class ActorMovement : MonoBehaviour
             yield return null;
         }
 
-        
-
+        p_moved = false;
+        OnMovePerformed?.Invoke();
         p_canMove = true;
     }
 }

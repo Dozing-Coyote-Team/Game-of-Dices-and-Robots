@@ -1,7 +1,24 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : ActorMovement
 {
+    public static event Action OnPlayerMove;
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        OnMovePerformed += InvokeMoveEvent;
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        OnMovePerformed -= InvokeMoveEvent;
+    }
+
+    private void InvokeMoveEvent() => OnPlayerMove?.Invoke();
+
     private void Update()
     {
         if (!p_canMove)
