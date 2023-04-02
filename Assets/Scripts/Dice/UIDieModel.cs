@@ -15,8 +15,9 @@ public class UIDieModel : MonoBehaviour
     [SerializeField] private float _animDuration = 3f;
     [SerializeField] private AnimationCurve _animationCurve;
     
-    [Header("References")]
+    [Header("Indicators references")]
     [SerializeField] List<Transform> _faceIndicators;
+    
     [Header("Rotation references")]
     [SerializeField] private List<UIDieModelRotation> _frontRotations;
     [SerializeField] private UIDieModelRotation _backRotation;
@@ -24,7 +25,9 @@ public class UIDieModel : MonoBehaviour
     [SerializeField] private UIDieModelRotation _leftRotaion;
     [SerializeField] private UIDieModelRotation _upRotation;
     [SerializeField] private UIDieModelRotation _bottomRotation;
-
+    
+    [Header("References")]
+    [SerializeField] private Animator _externalAnimator;
     // private int _currentResult = 1;
 
     private float _diceRadius;
@@ -34,6 +37,7 @@ public class UIDieModel : MonoBehaviour
         UIDieModelRotation rotation = EvaluateRotationTo(newResult);
 
         StartCoroutine(Rotate(360 * _numRolls + rotation.RotationOffset,rotation.Axis));
+        _externalAnimator.SetTrigger("Rotate");
     }
 
     private UIDieModelRotation EvaluateRotationTo(int newResult)
