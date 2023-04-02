@@ -31,7 +31,7 @@ public class Enemy : ActorMovement
             if (p_moved)
                 return;
 
-            switch (Random.Range(0, 4))
+            switch (move)
             {
                 case 0:
                     MoveUp();
@@ -66,5 +66,5 @@ public class Enemy : ActorMovement
             //            break;
             //    }
             //} while (!p_moved);
-        }
+    }
 }
