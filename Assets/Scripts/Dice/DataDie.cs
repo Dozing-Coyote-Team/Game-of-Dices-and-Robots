@@ -26,6 +26,7 @@ public class DataDie
     {
         IsRolling = true;
         _result = Random.Range(1, 7);
+        Debug.Log("Roll result: "+_result);
         _uiDieModel.RollTo(_result);
     }
 }

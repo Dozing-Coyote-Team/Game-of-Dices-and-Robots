@@ -9,50 +9,51 @@ using Random = UnityEngine.Random;
 public class UIDieModel : MonoBehaviour
 {
     //--------------------------- private vars
+
+    [Header("Settings")]
     [SerializeField] private int _numRolls = 3;
     [SerializeField] private float _animDuration = 3f;
     [SerializeField] private AnimationCurve _animationCurve;
+    
+    [Header("References")]
+    [SerializeField] List<Transform> _faceIndicators;
+    [Header("Rotation references")]
     [SerializeField] private List<UIDieModelRotation> _frontRotations;
     [SerializeField] private UIDieModelRotation _backRotation;
     [SerializeField] private UIDieModelRotation _rightRotation;
     [SerializeField] private UIDieModelRotation _leftRotaion;
     [SerializeField] private UIDieModelRotation _upRotation;
     [SerializeField] private UIDieModelRotation _bottomRotation;
-    
-    private int _value = 1;
-    //--------------------------- public methods
-    public void RollTo(int ris)
-    {
-        UIDieModelRotation rotation = new UIDieModelRotation();
-        // if (ris == _value)
-        // {
-        //     rotation = _frontRotations[Random.Range(0,_frontRotations.Count)];
-        // }
-        // else if()
 
-        int rand = Random.Range(0, 2);
-        switch (rand)
-        {
-            case 0:
-                rotation = _backRotation;
-                break;
-            case 1:
-                rotation = _rightRotation;
-                break;
-            case 2:
-                rotation = _leftRotaion;
-                break;
-            case 3:
-                rotation = _upRotation;
-                break;
-            case 4:
-                rotation = _bottomRotation;
-                break;
-        }
+    private int _currentResult = 1;
+    //--------------------------- public methods
+    public void RollTo(int newResult)
+    {
+        UIDieModelRotation rotation = EvaluateRotationTo(newResult);
         
-        
+        Debug.Log("Evaluated: "+rotation.name);
         
         StartCoroutine(Rotate(360 * _numRolls + rotation.RotationOffset,rotation.Axis));
+    }
+
+    private UIDieModelRotation EvaluateRotationTo(int newResult)
+    {
+        if (newResult == _currentResult)
+            return _frontRotations[Random.Range(0, _frontRotations.Count)];
+        
+        Vector3 newResultPos = _faceIndicators[newResult -1].position;
+        Vector3 currentResutPos = _faceIndicators[_currentResult-1].position;
+        
+        if (newResultPos.y > currentResutPos.y)
+            return _upRotation;
+        else if (newResultPos.y < currentResutPos.y)
+            return _bottomRotation;
+        else if (newResultPos.x > currentResutPos.x)
+            return _rightRotation;
+        else if (newResultPos.x < currentResutPos.x)
+            return _leftRotaion;
+        else
+            return _backRotation;
     }
 
     public Action OnRollAnimEnd;
@@ -102,8 +103,6 @@ public class UIDieModel : MonoBehaviour
             currentRot = Mathf.Lerp(0, totalRot, t);
 
             frameRot = currentRot - previousRot;
-            
-            Debug.Log("frame rot: "+frameRot);
             
             transform.RotateAround(transform.position,aroundAxis,frameRot);
 
