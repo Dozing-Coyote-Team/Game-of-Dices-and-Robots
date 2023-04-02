@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a8eaf13b-923e-49f6-aace-5916b29d9667" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Game-of-Dices-and-Robots/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game-of-Dices-and-Robots/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DiceThrow(Nico).unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DiceThrow(Nico).unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dice/DataDie.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dice/DataDie.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/UIDieModelRotations/bottom.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/UIDieModelRotations/bottom.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/UIDieModelRotations/left.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/UIDieModelRotations/left.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dice/UIDieModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dice/UIDieModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +91,8 @@
       <option name="presentableId" value="Default" />
       <updated>1680365855348</updated>
       <workItem from="1680365857953" duration="4754000" />
-      <workItem from="1680381788469" duration="12064000" />
+      <workItem from="1680381788469" duration="12648000" />
+      <workItem from="1680461563335" duration="2303000" />
     </task>
     <servers />
   </component>

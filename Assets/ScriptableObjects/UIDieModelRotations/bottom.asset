@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11741d2f29c7b416e8d9d2cc1b70a856, type: 3}
   m_Name: bottom
   m_EditorClassIdentifier: 
-  RotationOffset: -120
+  RotationOffset: 120
   Axis: {x: 1, y: 1, z: 1}
