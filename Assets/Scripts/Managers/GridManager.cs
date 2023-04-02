@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GridManager : Singleton<GridManager>
@@ -27,6 +28,42 @@ public class GridManager : Singleton<GridManager>
     private float _tileGap = 0;
     private int _tileCount = 0;
     private int _gridSize = 0;
+
+    public Dictionary<Vector2Int, GameObject> GetNeighboursObj(Vector2Int index)
+    {
+        Dictionary<Vector2Int, GameObject> result = new Dictionary<Vector2Int, GameObject>();
+
+        Vector2Int curIndex = new Vector2Int(index.x + 1, index.y);
+        GameObject obj = GetObjectAt(curIndex);
+        if(obj != null)
+            result.Add(curIndex, obj);
+
+        curIndex = new Vector2Int(index.x - 1, index.y);
+        obj = GetObjectAt(curIndex);
+        if (obj != null)
+            result.Add(curIndex, obj);
+
+        curIndex = new Vector2Int(index.x, index.y + 1);
+        obj = GetObjectAt(curIndex);
+        if (obj != null)
+            result.Add(curIndex, obj);
+
+        curIndex = new Vector2Int(index.x, index.y - 1);
+        obj = GetObjectAt(curIndex);
+        if (obj != null)
+            result.Add(curIndex, obj);
+
+        return result;
+    }
+
+    public GameObject GetObjectAt(Vector2Int index)
+    {
+        GridTile result = GetTileAt(index);
+        if (result != null)
+            return result.TileObject;
+
+        return null;
+    }
 
     public GridTile GetTileAt(Vector2Int index)
     {

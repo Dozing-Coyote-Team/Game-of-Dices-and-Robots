@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ActorMovement : MonoBehaviour
 {
@@ -36,7 +38,7 @@ public class ActorMovement : MonoBehaviour
             transform.position = GridManager.Instance.GetTileAt(_currentIndex).TilePosition;
         }
 
-        GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(false);
+        GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(false, this.gameObject);
     }
 
     protected virtual Vector2Int GetFirstEmpty(Vector2Int startIndex)
@@ -55,49 +57,49 @@ public class ActorMovement : MonoBehaviour
 
     protected virtual void MoveLeft()
     {
-        GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(true);
+        GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(true, this.gameObject);
         _currentIndex.x--;
 
         if(!TryMove(_currentIndex, Vector3.left))
         {
             _currentIndex.x++;
-            GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(false);
+            GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(false, this.gameObject);
         }
     }
 
     protected virtual void MoveRight()
     {
-        GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(true);
+        GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(true, this.gameObject);
         _currentIndex.x++;
 
         if (!TryMove(_currentIndex, Vector3.right))
         {
             _currentIndex.x--;
-            GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(false);
+            GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(false, this.gameObject);
         }
     }
 
     protected virtual void MoveUp()
     {
-        GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(true);
+        GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(true, this.gameObject);
         _currentIndex.y++;
 
         if (!TryMove(_currentIndex, Vector3.forward))
         {
             _currentIndex.y--;
-            GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(false);
+            GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(false, this.gameObject);
         }
     }
 
     protected virtual void MoveDown()
     {
-        GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(true);
+        GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(true, this.gameObject);
         _currentIndex.y--;
 
         if (!TryMove(_currentIndex, -Vector3.forward))
         {
             _currentIndex.y++;
-            GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(false);
+            GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(false, this.gameObject);
         }
     }
 
@@ -106,7 +108,15 @@ public class ActorMovement : MonoBehaviour
         if (GridManager.Instance.ExistTileAt(index) && GridManager.Instance.GetTileAt(index).IsEmpty)
         {
             StartCoroutine(Move(GridManager.Instance.GetTileAt(index).TilePosition, direction));
-            GridManager.Instance.GetTileAt(index).SetEmpty(false);
+            GridManager.Instance.GetTileAt(index).SetEmpty(false, this.gameObject);
+
+            //Dictionary<Vector2Int, GameObject> dic = GridManager.Instance.GetNeighboursObj(index);
+
+            //foreach(var obj in dic)
+            //{
+            //    Debug.Log(obj.Value.ToString());
+            //}
+
             return true;
         }
 
@@ -128,6 +138,8 @@ public class ActorMovement : MonoBehaviour
             transform.position = Vector3.Lerp(currentPos, position, elapsedTime / waitTime);
             yield return null;
         }
+
+        
 
         p_canMove = true;
     }
