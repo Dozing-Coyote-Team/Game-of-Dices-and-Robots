@@ -7,7 +7,7 @@ public class PlayerMovement : ActorMovement
 
     [Header("Player References")]
     [SerializeField]
-    private PlayerCombat playerCombat;
+    private PlayerCombat _playerCombat;
 
     protected override void OnEnable()
     {
@@ -25,7 +25,7 @@ public class PlayerMovement : ActorMovement
 
     private void InvokeMoveEvent() => OnPlayerMove?.Invoke();
 
-    private void CheckEnemies() => playerCombat.CheckEnemies(p_currentIndex);
+    private void CheckEnemies() => _playerCombat.CheckEnemies(p_currentIndex);
 
     private void Update()
     {
