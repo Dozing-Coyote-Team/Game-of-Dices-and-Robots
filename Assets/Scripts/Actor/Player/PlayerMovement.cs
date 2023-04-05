@@ -7,7 +7,7 @@ public class PlayerMovement : ActorMovement
 
     [Header("Player References")]
     [SerializeField]
-    private PlayerCombat _playerCombat;
+    private PlayerCombat playerCombat;
 
     protected override void OnEnable()
     {
