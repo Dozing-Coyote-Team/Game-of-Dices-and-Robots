@@ -14,18 +14,19 @@ public class DataDie
     //-------------------------- private vars
     private int _result = 1;
 
-    private UIDie _uiDie;
+    private UIDieModel _uiDieModel;
     //-------------------------- public methods
-    public DataDie(UIDie uiDie)
+    public DataDie(UIDieModel uiDieModel)
     {
-        _uiDie = uiDie;
-        _uiDie.OnRollAnimEnd += () => IsRolling = false;
+        _uiDieModel = uiDieModel;
+        _uiDieModel.OnRollAnimEnd += () => IsRolling = false;
     }
     
     public void Roll()
     {
         IsRolling = true;
         _result = Random.Range(1, 7);
-        _uiDie.RollTo(_result);
+        Debug.Log("Roll result: "+_result);
+        _uiDieModel.RollTo(_result);
     }
 }
