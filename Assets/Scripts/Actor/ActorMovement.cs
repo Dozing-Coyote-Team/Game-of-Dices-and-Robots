@@ -6,7 +6,9 @@ using UnityEngine.UIElements;
 
 public class ActorMovement : MonoBehaviour
 {
-    protected event Action OnMovePerformed; 
+    protected event Action OnMoveStart; 
+    protected event Action OnMoveEnd;
+
     protected bool p_canMove { get; private set; } = true;
     protected bool p_moved { get; private set; } = false;
 
@@ -127,7 +129,7 @@ public class ActorMovement : MonoBehaviour
         float waitTime = _moveTime;
         Vector3 currentPos = transform.position;
         
-        OnMovePerformed?.Invoke();
+        OnMoveStart?.Invoke();
 
         transform.rotation = Quaternion.LookRotation(rotation);
 
@@ -138,6 +140,7 @@ public class ActorMovement : MonoBehaviour
             yield return null;
         }
 
+        OnMoveEnd?.Invoke();
         p_moved = false;
         p_canMove = true;
     }

@@ -1,35 +1,31 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : ActorMovement
 {
     public static event Action OnPlayerMove;
 
+    [Header("Player References")]
+    [SerializeField]
+    private PlayerCombat playerCombat;
+
     protected override void OnEnable()
     {
         base.OnEnable();
-        OnMovePerformed += InvokeMoveEvent;
-        OnMovePerformed += CheckEnemies;
+        OnMoveStart += InvokeMoveEvent;
+        OnMoveStart += CheckEnemies;
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
-        OnMovePerformed -= InvokeMoveEvent;
-        OnMovePerformed -= CheckEnemies;
+        OnMoveStart -= InvokeMoveEvent;
+        OnMoveStart -= CheckEnemies;
     }
 
     private void InvokeMoveEvent() => OnPlayerMove?.Invoke();
 
-    private void CheckEnemies()
-    {
-        List<Enemy> result = GridManager.Instance.GetNeighbourEnemies(p_currentIndex);
-        for(int i =  0; i < result.Count; i++)
-        {
-            CombatManager.Instance.RegisterEnemy(result[i]);
-        }
-    }
+    private void CheckEnemies() => playerCombat.CheckEnemies(p_currentIndex);
 
     private void Update()
     {
