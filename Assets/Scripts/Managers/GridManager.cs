@@ -56,6 +56,34 @@ public class GridManager : Singleton<GridManager>
         return result;
     }
 
+    public List<Enemy> GetNeighbourEnemies(Vector2Int index)
+    {
+        List<Enemy> result = new List<Enemy>();
+        Vector2Int curIndex = new Vector2Int(index.x + 1, index.y);
+
+        Enemy enemyObj;
+        GameObject obj = GetObjectAt(curIndex);
+        if (obj != null && obj.TryGetComponent(out enemyObj))
+            result.Add(enemyObj);
+
+        curIndex = new Vector2Int(index.x - 1, index.y);
+        obj = GetObjectAt(curIndex);
+        if (obj != null && obj.TryGetComponent(out enemyObj))
+            result.Add(enemyObj);
+
+        curIndex = new Vector2Int(index.x, index.y + 1);
+        obj = GetObjectAt(curIndex);
+        if (obj != null && obj.TryGetComponent(out enemyObj))
+            result.Add(enemyObj);
+
+        curIndex = new Vector2Int(index.x, index.y - 1);
+        obj = GetObjectAt(curIndex);
+        if (obj != null && obj.TryGetComponent(out enemyObj))
+            result.Add(enemyObj);
+
+        return result;
+    }
+
     public GameObject GetObjectAt(Vector2Int index)
     {
         GridTile result = GetTileAt(index);

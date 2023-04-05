@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : ActorMovement
@@ -9,15 +10,26 @@ public class PlayerMovement : ActorMovement
     {
         base.OnEnable();
         OnMovePerformed += InvokeMoveEvent;
+        OnMovePerformed += CheckEnemies;
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
         OnMovePerformed -= InvokeMoveEvent;
+        OnMovePerformed -= CheckEnemies;
     }
 
     private void InvokeMoveEvent() => OnPlayerMove?.Invoke();
+
+    private void CheckEnemies()
+    {
+        List<Enemy> result = GridManager.Instance.GetNeighbourEnemies(p_currentIndex);
+        for(int i =  0; i < result.Count; i++)
+        {
+            CombatManager.Instance.RegisterEnemy(result[i]);
+        }
+    }
 
     private void Update()
     {

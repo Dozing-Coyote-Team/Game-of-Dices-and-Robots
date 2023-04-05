@@ -10,6 +10,8 @@ public class ActorMovement : MonoBehaviour
     protected bool p_canMove { get; private set; } = true;
     protected bool p_moved { get; private set; } = false;
 
+    protected Vector2Int p_currentIndex = Vector2Int.zero;
+
     [Header("Movement Settings")]
     [Min(0)]
     [SerializeField]
@@ -18,7 +20,6 @@ public class ActorMovement : MonoBehaviour
     [SerializeField]
     private Vector2Int _startingIndex = Vector2Int.zero;
 
-    private Vector2Int _currentIndex = Vector2Int.zero;
 
     protected virtual void OnEnable()
     {
@@ -32,16 +33,16 @@ public class ActorMovement : MonoBehaviour
 
     protected virtual void InstantiateActor()
     {
-        _currentIndex = _startingIndex;
-        if (GridManager.Instance.ExistTileAt(_currentIndex) && GridManager.Instance.GetTileAt(_currentIndex).IsEmpty)
-            transform.position = GridManager.Instance.GetTileAt(_currentIndex).TilePosition;
+        p_currentIndex = _startingIndex;
+        if (GridManager.Instance.ExistTileAt(p_currentIndex) && GridManager.Instance.GetTileAt(p_currentIndex).IsEmpty)
+            transform.position = GridManager.Instance.GetTileAt(p_currentIndex).TilePosition;
         else
         {
-            _currentIndex = GetFirstEmpty(Vector2Int.zero);
-            transform.position = GridManager.Instance.GetTileAt(_currentIndex).TilePosition;
+            p_currentIndex = GetFirstEmpty(Vector2Int.zero);
+            transform.position = GridManager.Instance.GetTileAt(p_currentIndex).TilePosition;
         }
 
-        GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(false, this.gameObject);
+        GridManager.Instance.GetTileAt(p_currentIndex).SetEmpty(false, this.gameObject);
     }
 
     protected virtual Vector2Int GetFirstEmpty(Vector2Int startIndex)
@@ -60,49 +61,49 @@ public class ActorMovement : MonoBehaviour
 
     protected virtual void MoveLeft()
     {
-        GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(true, this.gameObject);
-        _currentIndex.x--;
+        GridManager.Instance.GetTileAt(p_currentIndex).SetEmpty(true, this.gameObject);
+        p_currentIndex.x--;
 
-        if(!TryMove(_currentIndex, Vector3.left))
+        if(!TryMove(p_currentIndex, Vector3.left))
         {
-            _currentIndex.x++;
-            GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(false, this.gameObject);
+            p_currentIndex.x++;
+            GridManager.Instance.GetTileAt(p_currentIndex).SetEmpty(false, this.gameObject);
         }
     }
 
     protected virtual void MoveRight()
     {
-        GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(true, this.gameObject);
-        _currentIndex.x++;
+        GridManager.Instance.GetTileAt(p_currentIndex).SetEmpty(true, this.gameObject);
+        p_currentIndex.x++;
 
-        if (!TryMove(_currentIndex, Vector3.right))
+        if (!TryMove(p_currentIndex, Vector3.right))
         {
-            _currentIndex.x--;
-            GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(false, this.gameObject);
+            p_currentIndex.x--;
+            GridManager.Instance.GetTileAt(p_currentIndex).SetEmpty(false, this.gameObject);
         }
     }
 
     protected virtual void MoveUp()
     {
-        GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(true, this.gameObject);
-        _currentIndex.y++;
+        GridManager.Instance.GetTileAt(p_currentIndex).SetEmpty(true, this.gameObject);
+        p_currentIndex.y++;
 
-        if (!TryMove(_currentIndex, Vector3.forward))
+        if (!TryMove(p_currentIndex, Vector3.forward))
         {
-            _currentIndex.y--;
-            GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(false, this.gameObject);
+            p_currentIndex.y--;
+            GridManager.Instance.GetTileAt(p_currentIndex).SetEmpty(false, this.gameObject);
         }
     }
 
     protected virtual void MoveDown()
     {
-        GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(true, this.gameObject);
-        _currentIndex.y--;
+        GridManager.Instance.GetTileAt(p_currentIndex).SetEmpty(true, this.gameObject);
+        p_currentIndex.y--;
 
-        if (!TryMove(_currentIndex, -Vector3.forward))
+        if (!TryMove(p_currentIndex, -Vector3.forward))
         {
-            _currentIndex.y++;
-            GridManager.Instance.GetTileAt(_currentIndex).SetEmpty(false, this.gameObject);
+            p_currentIndex.y++;
+            GridManager.Instance.GetTileAt(p_currentIndex).SetEmpty(false, this.gameObject);
         }
     }
 
@@ -110,8 +111,8 @@ public class ActorMovement : MonoBehaviour
     {
         if (GridManager.Instance.ExistTileAt(index) && GridManager.Instance.GetTileAt(index).IsEmpty)
         {
-            StartCoroutine(Move(GridManager.Instance.GetTileAt(index).TilePosition, direction));
             GridManager.Instance.GetTileAt(index).SetEmpty(false, this.gameObject);
+            StartCoroutine(Move(GridManager.Instance.GetTileAt(index).TilePosition, direction));
             p_moved = true;
             return true;
         }
@@ -125,6 +126,8 @@ public class ActorMovement : MonoBehaviour
         float elapsedTime = 0;
         float waitTime = _moveTime;
         Vector3 currentPos = transform.position;
+        
+        OnMovePerformed?.Invoke();
 
         transform.rotation = Quaternion.LookRotation(rotation);
 
@@ -136,7 +139,6 @@ public class ActorMovement : MonoBehaviour
         }
 
         p_moved = false;
-        OnMovePerformed?.Invoke();
         p_canMove = true;
     }
 }

@@ -47,24 +47,5 @@ public class Enemy : ActorMovement
                     break;
             }
         }
-            // Old code
-            //do
-            //{
-            //    switch (Random.Range(0, 4))
-            //    {
-            //        case 0:
-            //            MoveUp();
-            //            break;
-            //        case 1:
-            //            MoveDown();
-            //            break;
-            //        case 2:
-            //            MoveLeft();
-            //            break;
-            //        case 3:
-            //            MoveRight();
-            //            break;
-            //    }
-            //} while (!p_moved);
     }
 }
