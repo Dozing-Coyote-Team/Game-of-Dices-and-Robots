@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CombatManager : Singleton<CombatManager>
 {
-    public static event Action OnCombatStart;
+    public static event Action OnCombatEnter;
+    public static event Action OnCombatExit;
 
     private Queue<Enemy> _enemiesQueue = new Queue<Enemy>();
 
@@ -17,10 +18,14 @@ public class CombatManager : Singleton<CombatManager>
     public void ClearQueue() => _enemiesQueue.Clear();
 
     // This method is called when a Player find one or more enemy
-    public void StartCombat()
+    public void StartBattle()
     {
-        OnCombatStart?.Invoke();
+        OnCombatEnter?.Invoke();
+
         // Insert here what to do when the combat start 
         // E.G. start combat with the first dequeued enemy
+        CameraManager.Instance.ActiveCombatCamera(_enemiesQueue.Peek().gameObject);
+
+        // Remember to activate the playerCamera after the last combat
     }
 }
