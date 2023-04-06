@@ -22,10 +22,11 @@ public class CombatManager : Singleton<CombatManager>
     {
         OnCombatEnter?.Invoke();
 
+        // Here the enemies queue is never empty
         // Insert here what to do when the combat start 
         // E.G. start combat with the first dequeued enemy
         CameraManager.Instance.ActiveCombatCamera(_enemiesQueue.Peek().gameObject);
 
-        // Remember to activate the playerCamera after the last combat
+        // Remember to activate the playerCamera after the last battle
     }
 }
