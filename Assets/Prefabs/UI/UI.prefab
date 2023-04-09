@@ -31,7 +31,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2817761567373092267}
+  - {fileID: 6408126931262233706}
   - {fileID: 3299475640757367361}
   - {fileID: 3299475641120645680}
   - {fileID: 3299475641473966590}
@@ -42,7 +42,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0.000015258789, y: 0}
-  m_SizeDelta: {x: 1208.04, y: 218.54}
+  m_SizeDelta: {x: 1000, y: 150}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &2817761566040603777
 CanvasRenderer:
@@ -753,7 +753,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 779303787039008988, guid: 621cd25b93f364eaa87d849e787b59eb, type: 3}
   m_PrefabInstance: {fileID: 2817761567808297629}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &3299475640945134967
+--- !u!1001 &5926343296886273206
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -852,10 +852,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: aaab3f71d6c5f4557be3ac765dde985b, type: 2}
+    - target: {fileID: 4609307276159484917, guid: 621cd25b93f364eaa87d849e787b59eb, type: 3}
+      propertyPath: id
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 621cd25b93f364eaa87d849e787b59eb, type: 3}
---- !u!224 &2817761567373092267 stripped
+--- !u!224 &6408126931262233706 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 779303787039008988, guid: 621cd25b93f364eaa87d849e787b59eb, type: 3}
-  m_PrefabInstance: {fileID: 3299475640945134967}
+  m_PrefabInstance: {fileID: 5926343296886273206}
   m_PrefabAsset: {fileID: 0}
