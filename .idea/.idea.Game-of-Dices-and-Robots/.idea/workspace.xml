@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8eaf13b-923e-49f6-aace-5916b29d9667" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Game-of-Dices-and-Robots/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game-of-Dices-and-Robots/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Dice/btnRollDice.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Dice/btnRollDice.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/UI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/UI.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/DiceThrow(Nico).unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DiceThrow(Nico).unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dice/UIDieModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dice/UIDieModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +92,7 @@
       <workItem from="1680365857953" duration="4754000" />
       <workItem from="1680381788469" duration="12648000" />
       <workItem from="1680461563335" duration="4378000" />
+      <workItem from="1681323615099" duration="12000" />
     </task>
     <servers />
   </component>
