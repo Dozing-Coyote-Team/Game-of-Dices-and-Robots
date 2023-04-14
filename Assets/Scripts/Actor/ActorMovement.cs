@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class ActorMovement : MonoBehaviour
 {
@@ -107,6 +105,11 @@ public class ActorMovement : MonoBehaviour
             p_currentIndex.y++;
             GridManager.Instance.GetTileAt(p_currentIndex).SetEmpty(false, this.gameObject);
         }
+    }
+
+    protected virtual void Stop()
+    {
+        p_moved = true;
     }
 
     private bool TryMove(Vector2Int index, Vector3 direction)

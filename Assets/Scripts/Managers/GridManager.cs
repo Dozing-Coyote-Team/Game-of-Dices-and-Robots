@@ -30,12 +30,21 @@ public class GridManager : Singleton<GridManager>
     private int _tileCount = 0;
     private int _gridSize = 0;
 
+
+    public int ManhattanDistance(Vector2Int a, Vector2Int b)
+    {
+        checked
+        {
+            return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
+        }
+    }
+
     public bool CheckInArea(Vector2Int index, int radius, Type type)
     {
         Vector2Int currentIndex = new Vector2Int(index.x - radius , index.y - radius);
         int startX = currentIndex.x;
         GameObject currentTileObj;
-        radius *= radius;
+        radius += radius;
         radius++;
         for(int y = 0; y < radius; y++)
         {
@@ -60,7 +69,7 @@ public class GridManager : Singleton<GridManager>
         Vector2Int currentIndex = new Vector2Int(index.x - radius, index.y - radius);
         int startX = currentIndex.x;
         GameObject currentTileObj;
-        radius *= radius;
+        radius += radius;
         radius++;
         objIndexes = new List<Vector2Int>();
         for (int y = 0; y < radius; y++)

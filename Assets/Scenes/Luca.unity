@@ -1432,8 +1432,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveTime: 0.2
-  _startingIndex: {x: 4, y: 4}
-  _viewRadius: 2
+  _startingIndex: {x: 0, y: 0}
+  _viewRadius: 3
   _moveOnIdle: 0
 --- !u!1 &1278200725
 GameObject:
@@ -1482,7 +1482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveTime: 0.2
-  _startingIndex: {x: 0, y: 0}
+  _startingIndex: {x: 4, y: 4}
   _playerCombat: {fileID: 1278200728}
 --- !u!114 &1278200728
 MonoBehaviour:
