@@ -1,8 +1,15 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class Enemy : ActorMovement
 {
+    [Header("Movement Settings")]
+    [SerializeField]
+    private int _viewRadius = 2;
+    [SerializeField]
+    private bool _moveOnIdle = false;
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -17,11 +24,17 @@ public class Enemy : ActorMovement
 
     private void TakeDecision()
     {
+        if (_moveOnIdle)
+            MoveRandom();
+
         // Enemy logic goes here 
-        MoveRandom();
+        if(GridManager.Instance.CheckInArea(p_currentIndex, _viewRadius, typeof(PlayerMovement), out List<Vector2Int> indexList))
+        {
+            MoveRandom();
+            Debug.Log(indexList[0]);
+        }
     }
 
-    // To be deleted
     private void MoveRandom()
     {
         int[] moveList = { 0, 1, 2, 3};
