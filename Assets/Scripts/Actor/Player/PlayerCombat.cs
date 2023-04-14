@@ -13,7 +13,9 @@ public class PlayerCombat : MonoBehaviour
             CombatManager.Instance.RegisterEnemy(result[i]);
         }
 
-        if(result.Count > 0) 
-            CombatManager.Instance.StartCombat();
+        if (result.Count > 0)
+            CombatManager.Instance.StartBattle();
+        else
+            CameraManager.Instance.ActivePlayerCamera();
     }
 }

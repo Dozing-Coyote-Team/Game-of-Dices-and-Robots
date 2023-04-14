@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GridManager : Singleton<GridManager>
@@ -28,6 +29,70 @@ public class GridManager : Singleton<GridManager>
     private float _tileGap = 0;
     private int _tileCount = 0;
     private int _gridSize = 0;
+
+
+    public int ManhattanDistance(Vector2Int a, Vector2Int b)
+    {
+        checked
+        {
+            return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
+        }
+    }
+
+    public bool CheckInArea(Vector2Int index, int radius, Type type)
+    {
+        Vector2Int currentIndex = new Vector2Int(index.x - radius , index.y - radius);
+        int startX = currentIndex.x;
+        GameObject currentTileObj;
+        radius += radius;
+        radius++;
+        for(int y = 0; y < radius; y++)
+        {
+            for(int x = 0; x < radius; x++)
+            {
+                currentTileObj = GetObjectAt(currentIndex);
+
+                if (currentTileObj != null && currentTileObj.GetComponent(type))
+                    return true;
+
+                currentIndex.x++;
+            }
+            currentIndex.x = startX;
+            currentIndex.y++;
+            
+        }
+        return false;
+    }
+
+    public bool CheckInArea(Vector2Int index, int radius, Type type, out List<Vector2Int> objIndexes)
+    {
+        Vector2Int currentIndex = new Vector2Int(index.x - radius, index.y - radius);
+        int startX = currentIndex.x;
+        GameObject currentTileObj;
+        radius += radius;
+        radius++;
+        objIndexes = new List<Vector2Int>();
+        for (int y = 0; y < radius; y++)
+        {
+            for (int x = 0; x < radius; x++)
+            {
+                currentTileObj = GetObjectAt(currentIndex);
+
+                if (currentTileObj != null && currentTileObj.GetComponent(type))
+                    objIndexes.Add(currentIndex);
+
+                currentIndex.x++;
+            }
+            currentIndex.x = startX;
+            currentIndex.y++;
+
+        }
+
+        if(objIndexes.Count > 0)
+            return true;
+        else
+            return false;
+    }
 
     public Dictionary<Vector2Int, GameObject> GetNeighboursObj(Vector2Int index)
     {
