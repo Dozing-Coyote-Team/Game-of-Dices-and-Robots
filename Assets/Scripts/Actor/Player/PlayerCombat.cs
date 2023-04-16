@@ -7,13 +7,13 @@ public class PlayerCombat : MonoBehaviour
     {
         CombatManager.Instance.ClearQueue();
 
-        List<Enemy> result = GridManager.Instance.GetNeighbourEnemies(index);
-        for (int i = 0; i < result.Count; i++)
+        List<Enemy> neighbourEnemies = GridManager.Instance.GetNeighbourEnemies(index);
+        for (int i = 0; i < neighbourEnemies.Count; i++)
         {
-            CombatManager.Instance.RegisterEnemy(result[i]);
+            CombatManager.Instance.RegisterEnemy(neighbourEnemies[i]);
         }
 
-        if (result.Count > 0)
+        if (neighbourEnemies.Count > 0)
             CombatManager.Instance.StartBattle();
         else
             CameraManager.Instance.ActivePlayerCamera();

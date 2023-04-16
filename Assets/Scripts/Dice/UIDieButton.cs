@@ -10,11 +10,13 @@ public class UIDieButton : MonoBehaviour
 
     private void Awake()
     {
-        GetComponent<Button>().onClick.AddListener(()=>Roll());
+        Debug.Log("Awake called");
+        GetComponent<Button>().onClick.AddListener(() => Roll());
     }
 
     private void Roll()
     {
+        Debug.Log("Rolling die");
         DiceManager.Instance.RollDie(id);
     }
 }

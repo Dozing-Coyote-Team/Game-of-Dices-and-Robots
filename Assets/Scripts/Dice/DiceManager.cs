@@ -12,6 +12,13 @@ public class DiceManager : Singleton<DiceManager>
     private List<DataDie> _dataDice;
     
     //-------------------------- public methods
+
+    public void RollAll()
+    {
+        for(int i=0;i<_dataDice.Count;i++)
+            RollDie(i);
+    }
+    
     public void RollDie(int id)
     {
         _dataDice[id].Roll();
