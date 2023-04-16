@@ -32,6 +32,7 @@ public class EquipmentStat : ScriptableObject
     public int Defence { get => _defence; }
     public int Accuracy { get => _accuracy; }
     public int Speed { get => _speed; }
+    public Sprite Icon { get => _icon; }
 
     [Header("Statistics")]
     [SerializeField]
@@ -50,6 +51,8 @@ public class EquipmentStat : ScriptableObject
     [Min(0)]
     [SerializeField]
     private int _speed;
+    [SerializeField]
+    private Sprite _icon;
     [HideInInspector]
     [SerializeField]
     private List<int> _customComboSet = new List<int>(5);

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2010158709472118209}
   - component: {fileID: 2010158709472118210}
+  - component: {fileID: 4209201322945243738}
   m_Layer: 5
   m_Name: StatsEntry
   m_TagString: Untagged
@@ -65,6 +66,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &4209201322945243738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010158709472118208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31446161c39c54347b5108a6577e78d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _iconImage: {fileID: 2010158710786684730}
+  _statText: {fileID: 2010158710439128058}
 --- !u!1 &2010158710439128056
 GameObject:
   m_ObjectHideFlags: 0
