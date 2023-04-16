@@ -10,6 +10,8 @@ public class UILootCard : MonoBehaviour
     private UIStatEntry _statEntryPrefab;
     [SerializeField]
     private GameObject _statPanel;
+    [SerializeField]
+    private Image _equipIcon;
 
     [Header("Icons References")]
     [SerializeField]
@@ -41,6 +43,8 @@ public class UILootCard : MonoBehaviour
         {
             AddEntry(_accuracyIcon, stat.Accuracy);
         }
+
+        _equipIcon.sprite = stat.Icon;
     }
 
     private void AddEntry(Sprite statIcon, int statValue)
