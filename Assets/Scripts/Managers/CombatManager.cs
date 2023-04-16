@@ -36,7 +36,8 @@ public class CombatManager : Singleton<CombatManager>
     {
         yield return new WaitForSeconds(2f);
         UIManager.Instance.EnableCombatPanel(true);
-        DiceManager.Instance.RollAll();
+        DiceMngGetter.Instance.PlayerDiceManager().RollAll();
+        DiceMngGetter.Instance.EnemyDiceManager().RollAll();
     }
 
 }

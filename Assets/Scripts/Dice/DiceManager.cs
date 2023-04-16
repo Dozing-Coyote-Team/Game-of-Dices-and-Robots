@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DiceManager : Singleton<DiceManager>
+public class DiceManager : MonoBehaviour
 {
     //-------------------------- private vars
     [Header("References")]
@@ -45,11 +45,9 @@ public class DiceManager : Singleton<DiceManager>
                 return true;
         return false;
     }
-
-    //-------------------------- private methods
+    
     private void Awake()
     {
-        base.Awake();
         _dataDice = new List<DataDie>();
         for(int i=0;i<_uiDice.Count;i++)
             _dataDice.Add(new DataDie(_uiDice[i]));
