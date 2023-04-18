@@ -15,6 +15,6 @@ public class UIDieButton : MonoBehaviour
 
     private void Roll()
     {
-        DiceManager.Instance.RollDie(id);
+        DiceManagers.Instance.PlayerDM.RollDie(id);
     }
 }
