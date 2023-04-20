@@ -2,19 +2,28 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UIDieButton : MonoBehaviour
 {
-    [SerializeField] private int id = 0;
+    [FormerlySerializedAs("id")]
+    [Header("Settings")]
+    [SerializeField] private int _id = 0;
+
+    [Header("References")] 
+    [SerializeField] private GameObject _flaggedIndicator;
 
     private void Awake()
     {
-        GetComponent<Button>().onClick.AddListener(()=>Roll());
+        GetComponent<Button>().onClick.AddListener(()=>WhenTapped());
+        _flaggedIndicator.SetActive(false);
+        RerollManager.Instance.OnReroll += () => _flaggedIndicator.SetActive(false);
     }
 
-    private void Roll()
+    private void WhenTapped()
     {
-        DiceManager.Instance.RollDie(id);
+        Debug.Log("Tapped");
+        _flaggedIndicator.SetActive(RerollManager.Instance.SwitchFlag(_id));
     }
 }

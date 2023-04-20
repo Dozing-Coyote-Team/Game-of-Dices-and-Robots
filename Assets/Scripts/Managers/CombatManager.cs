@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,7 +27,16 @@ public class CombatManager : Singleton<CombatManager>
         // Insert here what to do when the combat start 
         // E.G. start combat with the first dequeued enemy
         CameraManager.Instance.ActiveCombatCamera(_enemiesQueue.Peek().gameObject);
-
+        StartCoroutine(CorStartBattle());
         // Remember to activate the playerCamera after the last battle
+    }
+
+    private IEnumerator CorStartBattle()
+    {
+        yield return new WaitForSeconds(1.8f);
+        UIManager.Instance.ShowBattlePanel(true);
+        yield return new WaitForSeconds(0.2f);
+        DiceManagers.Instance.PlayerDM.RollAll();
+        DiceManagers.Instance.EnemyDM.RollAll();
     }
 }

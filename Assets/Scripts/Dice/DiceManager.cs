@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DiceManager : Singleton<DiceManager>
+public class DiceManager : MonoBehaviour
 {
     //-------------------------- private vars
     [Header("References")]
@@ -15,6 +15,12 @@ public class DiceManager : Singleton<DiceManager>
     public void RollDie(int id)
     {
         _dataDice[id].Roll();
+    }
+
+    public void RollAll()
+    {
+        for (int i=0;i<_uiDice.Count;i++)
+            _dataDice[i].Roll();
     }
     
     public int? GetResult(int id)
@@ -42,7 +48,6 @@ public class DiceManager : Singleton<DiceManager>
     //-------------------------- private methods
     private void Awake()
     {
-        base.Awake();
         _dataDice = new List<DataDie>();
         for(int i=0;i<_uiDice.Count;i++)
             _dataDice.Add(new DataDie(_uiDice[i]));
