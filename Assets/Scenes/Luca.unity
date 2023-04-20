@@ -1648,7 +1648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591cf32fa8bdf7a418de9d658118aed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveTime: 0.2
+  _moveTime: 0.3
   _startingIndex: {x: 0, y: 0}
   _viewRadius: 1
   _moveOnIdle: 1
@@ -1698,7 +1698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da5a7da4d4d2594e8d489f9aacbe853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveTime: 0.2
+  _moveTime: 0.3
   _startingIndex: {x: 4, y: 4}
   _playerCombat: {fileID: 1278200728}
 --- !u!114 &1278200728

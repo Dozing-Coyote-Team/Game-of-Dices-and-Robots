@@ -130,7 +130,7 @@ public class ActorMovement : MonoBehaviour
         p_canMove = false;
         float elapsedTime = 0;
         float waitTime = _moveTime;
-        Vector3 currentPos = transform.position;
+        Vector3 startPos = transform.position;
         
         OnMoveStart?.Invoke();
 
@@ -139,7 +139,17 @@ public class ActorMovement : MonoBehaviour
         while (elapsedTime < waitTime)
         {
             elapsedTime += Time.deltaTime;
-            transform.position = Vector3.Lerp(currentPos, position, elapsedTime / waitTime);
+
+            // version without "steps"
+            // transform.position = Vector3.Lerp(startPos, position, elapsedTime / waitTime);
+
+            // version with "steps"
+            if (elapsedTime < waitTime / 2) 
+            {
+                float t = elapsedTime / (waitTime / 2);
+                transform.position = Vector3.Lerp(startPos, position, t);
+            }
+
             yield return null;
         }
 
