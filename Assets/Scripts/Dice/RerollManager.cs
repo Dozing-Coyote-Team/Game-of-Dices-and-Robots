@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class RerollManager : Singleton<RerollManager>
 {
-
+    //------------------------- public vars
+    public Action OnReroll;
+    
+    //------------------------- private vars
     private const int NDICE = 5;
     private bool[] _flags;
 
@@ -16,6 +19,7 @@ public class RerollManager : Singleton<RerollManager>
             _flags[i] = false;
     }
 
+    //------------------------- public methods
     /// <summary>
     /// Flags dice as to roll if not flagged, sets it as not to roll if flagged
     /// </summary>
@@ -41,6 +45,4 @@ public class RerollManager : Singleton<RerollManager>
         if (OnReroll!=null)
             OnReroll();
     }
-
-    public Action OnReroll;
 }

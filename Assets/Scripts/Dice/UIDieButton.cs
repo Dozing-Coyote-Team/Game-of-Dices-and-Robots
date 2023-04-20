@@ -23,7 +23,6 @@ public class UIDieButton : MonoBehaviour
 
     private void WhenTapped()
     {
-        Debug.Log("Tapped");
         _flaggedIndicator.SetActive(RerollManager.Instance.SwitchFlag(_id));
     }
 }
