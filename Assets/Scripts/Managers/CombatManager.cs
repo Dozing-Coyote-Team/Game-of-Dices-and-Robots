@@ -8,9 +8,9 @@ public class CombatManager : Singleton<CombatManager>
     public static event Action OnCombatEnter;
     public static event Action OnCombatExit;
 
-    private Queue<Enemy> _enemiesQueue = new Queue<Enemy>();
+    private Queue<EnemyMovement> _enemiesQueue = new Queue<EnemyMovement>();
 
-    public void RegisterEnemy(Enemy enemy)
+    public void RegisterEnemy(EnemyMovement enemy)
     {
         _enemiesQueue.Enqueue(enemy);
         Debug.Log("Enemy Registered, Name: " + enemy.gameObject);

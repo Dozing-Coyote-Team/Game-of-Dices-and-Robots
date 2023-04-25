@@ -7,7 +7,7 @@ public class PlayerCombat : MonoBehaviour
     {
         CombatManager.Instance.ClearQueue();
 
-        List<Enemy> result = GridManager.Instance.GetNeighbourEnemies(index);
+        List<EnemyMovement> result = GridManager.Instance.GetNeighbourEnemies(index);
         for (int i = 0; i < result.Count; i++)
         {
             CombatManager.Instance.RegisterEnemy(result[i]);

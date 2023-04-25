@@ -121,12 +121,12 @@ public class GridManager : Singleton<GridManager>
         return result;
     }
 
-    public List<Enemy> GetNeighbourEnemies(Vector2Int index)
+    public List<EnemyMovement> GetNeighbourEnemies(Vector2Int index)
     {
-        List<Enemy> result = new List<Enemy>();
+        List<EnemyMovement> result = new List<EnemyMovement>();
         Vector2Int curIndex = new Vector2Int(index.x + 1, index.y);
 
-        Enemy enemyObj;
+        EnemyMovement enemyObj;
         GameObject obj = GetObjectAt(curIndex);
         if (obj != null && obj.TryGetComponent(out enemyObj))
             result.Add(enemyObj);
