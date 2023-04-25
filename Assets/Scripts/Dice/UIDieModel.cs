@@ -88,6 +88,9 @@ public class UIDieModel : MonoBehaviour
             
             yield return null;
         }
+
+        if (OnRollAnimEnd != null)
+            OnRollAnimEnd();
     }
 
     private void Awake()
