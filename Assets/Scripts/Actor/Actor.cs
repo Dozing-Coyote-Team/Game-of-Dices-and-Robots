@@ -49,6 +49,8 @@ public abstract class Actor : MonoBehaviour
         {
             hpBar.value = Healht;
         }
+        
+        Debug.Log(gameObject.name + " takes "+damage+" damage, remaining health: "+Healht);
     }
 
     private void Awake()

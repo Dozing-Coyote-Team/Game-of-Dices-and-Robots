@@ -5,16 +5,23 @@ using UnityEngine;
 
 public class DiceManager : MonoBehaviour
 {
+    //-------------------------- public vars
+    public int TotalAttack =>  GetResult(eDiceTypes.Attack1) + GetResult(eDiceTypes.Attack2);
+    public int TotalDefense => GetResult(eDiceTypes.Defense1) + GetResult(eDiceTypes.Defense2);
+    
+    public enum eDiceTypes
+    {
+        Attack1,Attack2,Defense1,Defense2,Speed
+    }
     //-------------------------- private vars
     [Header("References")]
     [SerializeField] private List<UIDieModel> _uiDice;
-
     private List<DataDie> _dataDice;
-    
+
     //-------------------------- public methods
-    public void RollDie(int id)
+    public void Roll(eDiceTypes dice)
     {
-        _dataDice[id].Roll();
+        _dataDice[(int)dice].Roll();
     }
 
     public void RollAll()
@@ -23,20 +30,14 @@ public class DiceManager : MonoBehaviour
             _dataDice[i].Roll();
     }
     
-    public int? GetResult(int id)
+    public int GetResult(eDiceTypes dice)
     {
-        return _dataDice[id].IsRolling ? null : _dataDice[id].Result;
+        if(_dataDice[(int)dice].IsRolling)
+            Debug.LogError("Get dice result called while dice rolling");
+        
+        return (int)_dataDice[(int)dice].Result;
     }
     
-    public List<int?> GetResults()
-    {
-        List<int?> results = new List<int?>();
-        foreach (DataDie die in _dataDice)
-            results.Add(die.Result);
-
-        return results;
-    }
-
     public bool IsAnyDiceRolling()
     {
         foreach(DataDie die in _dataDice)
@@ -52,4 +53,5 @@ public class DiceManager : MonoBehaviour
         for(int i=0;i<_uiDice.Count;i++)
             _dataDice.Add(new DataDie(_uiDice[i]));
     }
+    
 }

@@ -49,7 +49,7 @@ public class RerollManager : Singleton<RerollManager>
             for(int i=0;i<NDICE;i++)
                 if (_flags[i])
                 {                
-                    RefManager.Instance.PlayerDM.RollDie(i);
+                    RefManager.Instance.PlayerDM.Roll((DiceManager.eDiceTypes)i);
                     _flags[i] = false;
                 }
 
