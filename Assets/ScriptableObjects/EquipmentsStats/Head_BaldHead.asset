@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 959da1a903ed6d548a7e8042ab90a5e7, type: 3}
-  m_Name: SpikeHeadStat
+  m_Name: Head_BaldHead
   m_EditorClassIdentifier: 
   _equipType: 0
-  _comboType: 6
+  _comboType: 4
   _damage: 0
-  _defence: 11
-  _accuracy: 2
+  _defence: 0
+  _accuracy: 0
   _speed: 0
   _icon: {fileID: 0}
   _customComboSet: 0000000000000000000000000000000000000000
